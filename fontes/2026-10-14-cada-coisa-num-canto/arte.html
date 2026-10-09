@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Post 01 v4 — "Cada coisa num canto." Carrossel do Instagram, 5 telas de 1080×1350.
+     Regra desta versão: título + uma frase que explica + a imagem como protagonista.
+     As telas do produto ({{IMG:…}}) são capturas das reproduções que o site já usa. -->
+<style>
+:root {
+  --ink: #021c43; --on-ink: #f4f6fa; --on-ink-2: #b9c5d8; --on-ink-3: #8597b2;
+  --paper: #f1f0ec; --sheet: #fbfbfa; --rule: #d8d4cb; --rule-sheet: #e3e6eb;
+  --text: #0f172a; --text-2: #475569; --text-3: #5b6778;
+  --mint: #60c09d; --warn: #fff3c4; --bad: #b3352f;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #777; font-family: 'DM Sans', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+.slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; padding: 104px 88px 0; }
+.paper { background: var(--paper); }
+.sheet { background: var(--sheet); }
+.ink   { background: var(--ink); color: var(--on-ink); }
+.statement { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.06; letter-spacing: -0.012em; color: var(--ink); position: relative; z-index: 10; }
+.ink .statement { color: var(--on-ink); }
+.apoio { font-size: 34px; line-height: 1.4; color: var(--text-2); position: relative; z-index: 10; }
+.ink .apoio { color: var(--on-ink-2); }
+
+.foot { position: absolute; left: 88px; right: 88px; bottom: 72px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+.logo { position: relative; display: inline-block; width: 138px; }
+.logo img { width: 100%; display: block; }
+.logo .acc { position: absolute; left: 55.2%; top: 88.5%; width: 3.6%; height: 9.4%; background: var(--mint); display: none; }
+.ink .logo img { filter: brightness(0) invert(1); }
+.ink .logo .acc { display: block; }
+.count { font-family: 'DM Mono', monospace; font-weight: 500; font-size: 22px; letter-spacing: .14em; color: var(--text-3); }
+.ink .count { color: var(--on-ink-3); }
+.arrow { font-size: 30px; margin-left: 18px; }
+
+/* fragmentos da desordem (os únicos objetos que inclinam) */
+.frag { position: absolute; font-family: 'DM Sans', sans-serif; color: #1f2937;
+  box-shadow: 0 1px 2px rgba(2, 28, 67, 0.08), 0 16px 32px -14px rgba(2, 28, 67, 0.28); }
+.planilha { background: #fff; border: 1px solid #d3d8de; border-radius: 4px; }
+.planilha table { border-collapse: collapse; }
+.planilha th { background: #f1f3f5; border: 1px solid #dde1e6; font-weight: 500; color: #6b7280; text-align: left; }
+.planilha td { border: 1px solid #e6e9ed; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.planilha td:first-child, .planilha th:first-child { background: #f1f3f5; color: #9ca3af; text-align: center; }
+.planilha .warn { background: var(--warn); }
+.planilha .bad { color: var(--bad); font-weight: 600; }
+.planilha .empty { color: #9ca3af; }
+
+/* ── 1 · a pilha ─────────────────────────────────────────── */
+.s1-title { font-size: 112px; }
+.s1-apoio { margin-top: 26px; width: 860px; }
+.pile { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+.mail { left: -10px; top: 545px; width: 640px; rotate: -3.5deg; background: #fff; border-radius: 10px; padding: 26px 30px; z-index: 2; }
+.mail h4 { font-size: 29px; font-weight: 600; }
+.mail .from { font-size: 22px; color: #6b7280; margin: 4px 0 14px; }
+.mail p { font-size: 26px; line-height: 1.45; color: #374151; }
+.att { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 8px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 22px; color: #4b5563; }
+.chat { left: 590px; top: 515px; width: 500px; rotate: 3deg; background: #ece5dc; border-radius: 22px; z-index: 3; }
+.chat-head { display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: #f6f2ec; border-radius: 22px 22px 0 0; border-bottom: 1px solid #e2d9cd; }
+.chat-avatar { width: 50px; height: 50px; border-radius: 50%; background: #c9bfb2; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 22px; }
+.chat-head strong { display: block; font-size: 25px; }
+.chat-head em { display: block; font-style: normal; font-size: 19px; color: #6b7280; }
+.chat-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.chat-body p { border-radius: 12px; padding: 13px 18px 28px; font-size: 26px; line-height: 1.3; position: relative; max-width: 90%; }
+.chat-body .in { background: #fff; align-self: flex-start; }
+.chat-body .out { background: #d8f5cf; align-self: flex-end; }
+.chat-body time { position: absolute; right: 12px; bottom: 4px; font-size: 17px; color: #6b7280; }
+.pile .planilha { left: 110px; top: 820px; rotate: 1.5deg; z-index: 5; }
+.pile .planilha table { font-size: 28px; }
+.pile .planilha th { padding: 9px 18px; font-size: 22px; }
+.pile .planilha td { padding: 13px 18px; }
+.pile .planilha td:first-child, .pile .planilha th:first-child { font-size: 20px; }
+.file { display: inline-flex; align-items: center; gap: 12px; padding: 16px 22px; background: #fff; border-radius: 8px; border: 1px solid #e5e7eb; font-size: 25px; color: #374151; }
+.ficon { width: 26px; height: 32px; border-radius: 3px; display: grid; place-items: end center; padding-bottom: 3px; font-size: 9px; font-weight: 700; color: #fff; }
+.ficon--pdf { background: #d6453d; } .ficon--img { background: #3f7dd8; }
+.f1 { left: 30px; top: 1105px; rotate: -2.5deg; z-index: 6; }
+.f2 { left: 600px; top: 1125px; rotate: 3deg; z-index: 4; }
+.f3 { left: 900px; top: 1030px; rotate: -4deg; z-index: 1; }
+.call { left: 640px; top: 1080px; rotate: -2deg; z-index: 7; display: flex; gap: 14px; align-items: center; padding: 16px 24px 16px 20px; background: #fff; border-radius: 12px; }
+.call-dot { width: 15px; height: 15px; border-radius: 50%; background: var(--bad); }
+.call strong { display: block; font-size: 25px; color: var(--bad); }
+.call em { display: block; font-style: normal; font-size: 20px; color: #6b7280; }
+
+/* ── 2 · o zoom na planilha ───────────────────────────────── */
+.zoom { position: absolute; left: 30px; top: 200px; rotate: -2deg; z-index: 2; }
+.zoom table { font-size: 40px; }
+.zoom th { padding: 14px 26px; font-size: 28px; }
+.zoom td { padding: 26px 26px; }
+.zoom td:first-child, .zoom th:first-child { font-size: 28px; padding-left: 22px; padding-right: 22px; }
+.s2-text { position: absolute; left: 88px; right: 88px; top: 700px; }
+.s2-title { font-size: 128px; }
+.s2-apoio { margin-top: 28px; }
+
+/* ── 3 · prazer, Claus ────────────────────────────────────── */
+.s3-title { font-size: 140px; }
+.s3-sub { margin-top: 26px; width: 904px; }
+.palco { position: absolute; left: 50%; top: 430px; width: 1380px; translate: -50% 0;
+  filter: drop-shadow(0 30px 50px rgba(0, 8, 24, 0.55)); }
+
+/* ── 4 · o celular ────────────────────────────────────────── */
+.s4-title { font-size: 92px; width: 400px; }
+.pontos { list-style: none; margin-top: 44px; width: 380px; border-top: 1px solid var(--rule-sheet); }
+.pontos li { display: grid; grid-template-columns: 34px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--rule-sheet); font-size: 29px; line-height: 1.3; color: var(--text); }
+.pontos .n { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 17px; font-weight: 600; margin-top: 1px; }
+.celular { position: absolute; right: 36px; top: 84px; height: 1120px;
+  filter: drop-shadow(0 40px 60px rgba(2, 28, 67, 0.28)); }
+
+/* ── 5 · assinado ─────────────────────────────────────────── */
+.s5 { background: linear-gradient(to bottom, var(--sheet) 0 440px, var(--ink) 440px); }
+.proposta { position: absolute; left: 50%; top: 0; height: 870px; translate: -50% 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 8, 24, 0.25)) drop-shadow(0 36px 60px rgba(0, 8, 24, 0.45)); }
+.s5-text { position: absolute; left: 88px; right: 88px; top: 850px; }
+.s5-title { font-size: 100px; }
+.s5-apoio { margin-top: 22px; }
+.s5-cta { font-size: 34px; color: var(--on-ink-2); margin-top: 30px; }
+.s5-cta b { color: var(--on-ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- 1 · papel · tudo jogado -->
+<section class="slide paper" id="s1">
+  <h1 class="statement s1-title">Cada coisa<br>num canto.</h1>
+  <p class="apoio s1-apoio">Os dados da negociação se espalham por e‑mail, WhatsApp e planilha. Uma hora, algo se perde.</p>
+  <div class="pile">
+    <div class="frag mail">
+      <h4>RE: RE: ENC: documentos do fiador</h4>
+      <div class="from">adm.locacao · ontem, 18:12</div>
+      <p>Segue de novo. O anterior foi sem o verso.</p>
+      <span class="att"><span class="ficon ficon--img">JPG</span>rg_verso.jpg</span>
+    </div>
+    <div class="frag chat">
+      <div class="chat-head"><span class="chat-avatar">Á</span><span><strong>Álvaro · proprietário</strong><em>visto por último às 22:47</em></span></div>
+      <div class="chat-body">
+        <p class="in">E aí, pode fechar?<time>21:03</time></p>
+        <p class="out">Só falta o fiador mandar o RG<time>21:10</time></p>
+      </div>
+    </div>
+    <div class="frag call"><span class="call-dot"></span><span><strong>3 chamadas perdidas</strong><em>Fiador · 19:02</em></span></div>
+    <div class="frag planilha">
+      <table>
+        <thead><tr><th></th><th>A · Inquilino</th><th>B · CPF</th><th>C · Status</th></tr></thead>
+        <tbody>
+          <tr><td>14</td><td>Marina A. Ribeiro</td><td>318.456.789-07</td><td>ok</td></tr>
+          <tr><td>15</td><td>Marina Ribeiro</td><td>318456789</td><td class="warn">conferir</td></tr>
+          <tr><td>16</td><td>M. Alves Ribeiro</td><td class="empty">(ver RG)</td><td class="bad">pendente</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="frag file f1"><span class="ficon ficon--pdf">PDF</span>proposta_final_v3_REVISADA.pdf</div>
+        <div class="frag file f3"><span class="ficon ficon--pdf">PDF</span>holerite_marina.pdf</div>
+  </div>
+  <div class="foot"><span class="logo"><img src="{{LOGO}}" alt=""><span class="acc"></span></span><span class="count">1 / 5<span class="arrow">→</span></span></div>
+</section>
+
+<!-- 2 · papel · o zoom: a mesma inquilina, três versões -->
+<section class="slide paper" id="s2">
+  <div class="frag planilha zoom">
+    <table>
+      <thead><tr><th></th><th>A · Inquilino</th><th>B · CPF</th><th>C · Status</th></tr></thead>
+      <tbody>
+        <tr><td>14</td><td>Marina A. Ribeiro</td><td>318.456.789-07</td><td>ok</td></tr>
+        <tr><td>15</td><td>Marina Ribeiro</td><td>318456789</td><td class="warn">conferir</td></tr>
+        <tr><td>16</td><td>M. Alves Ribeiro</td><td class="empty">(ver RG)</td><td class="bad">pendente</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="s2-text"><h2 class="statement s2-title">Qual delas<br>está certa?</h2>
+  <p class="apoio s2-apoio">A mesma inquilina, digitada três vezes, por três pessoas. Alguém vai ter que conferir antes de seguir.</p></div>
+  <div class="foot"><span class="logo"><img src="{{LOGO}}" alt=""><span class="acc"></span></span><span class="count">2 / 5</span></div>
+</section>
+
+<!-- 3 · tinta · o produto em cena -->
+<section class="slide ink" id="s3">
+  <h2 class="statement s3-title">Prazer, Claus.</h2>
+  <p class="apoio s3-sub">A negociação imobiliária inteira em um só lugar: proposta, dados do cliente, documentos e assinatura.</p>
+  <img class="palco" src="{{IMG:palco}}" alt="">
+  <div class="foot"><span class="logo"><img src="{{LOGO}}" alt=""><span class="acc"></span></span><span class="count">3 / 5</span></div>
+</section>
+
+<!-- 4 · folha · o cliente preenche -->
+<section class="slide sheet" id="s4">
+  <h2 class="statement s4-title">O cliente preenche uma vez.</h2>
+  <ol class="pontos">
+    <li><span class="n">1</span>Recebe um link com a marca da sua imobiliária</li>
+    <li><span class="n">2</span>Preenche pelo celular, sem criar conta</li>
+    <li><span class="n">3</span>Já envia os documentos</li>
+  </ol>
+  <img class="celular" src="{{IMG:celular-formulario}}" alt="">
+  <div class="foot"><span class="logo"><img src="{{LOGO}}" alt=""><span class="acc"></span></span><span class="count">4 / 5</span></div>
+</section>
+
+<!-- 5 · folha → tinta · assinado, sem redigitar -->
+<section class="slide ink s5" id="s5">
+  <img class="proposta" src="{{IMG:proposta-assinada}}" alt="">
+  <div class="s5-text">
+    <h2 class="statement s5-title">Sem redigitar nada.</h2>
+    <p class="apoio s5-apoio">Cada etapa aproveita o que já foi preenchido, da proposta à assinatura eletrônica, no próprio Claus.</p>
+    <p class="s5-cta">Veja como funciona: <b>useclaus.com</b></p>
+  </div>
+  <div class="foot"><span class="logo"><img src="{{LOGO}}" alt=""><span class="acc"></span></span><span class="count">5 / 5</span></div>
+</section>
+
+</body>
+</html>
